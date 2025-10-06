@@ -240,3 +240,6 @@ for city, info in cities.items():
     print(f"{city}:")
     print(json.dumps(info, indent=2))
     print()
+
+
+
