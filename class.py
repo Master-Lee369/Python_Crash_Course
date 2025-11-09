@@ -10,8 +10,9 @@ class Restaurant:
     def open_restaurant(self,):
         print("The Restaurant is open\n")
     def set_number_served(self,served_number):
-        self.number_served = served_number
-        print(f"The number of people have been served by the restaurant is {self.number_served}\n")
+        if served_number > self.number_served:
+            self.number_served = served_number
+            print(f"The number of people have been served by the restaurant is {self.number_served}\n")
     def increment_number_served(self,day_in_customers):
         self.number_served += day_in_customers
         print(f"The total number of cutomers served is {self.number_served}\n")
@@ -74,3 +75,54 @@ print(f"The number of login attempts are {user_obj.login_attempts}\n")
 user_obj.reset_login_attempt()
 
 print(f"The number of login attempts are {user_obj.login_attempts}\n")
+
+
+class IceCreamStand(Restaurant):
+    def __init__(self,restaurant_name,cuisine_type,flavours):
+        super().__init__(restaurant_name,cuisine_type)
+        self.flavours = flavours
+
+    def display_flavors(self,):
+        print(f"The Flavors are \n")
+        for flavor in self.flavours:
+            print(f" {flavor}\n")
+
+ice_cream_flavors = [
+    "Vanilla",
+    "Chocolate",
+    "Strawberry",
+    "Mint Chocolate Chip",
+    "Cookies and Cream",
+    "Butterscotch",
+    "Mango",
+    "Pistachio",
+    "Caramel Swirl"
+]
+IceCream_restrnt = IceCreamStand("Mcdonals","US",ice_cream_flavors)
+IceCream_restrnt.display_flavors()
+privileges = ["can add post", "can delete post", "can ban user", "can change database"]
+
+class Privileges:
+    def __init__(self,privileges):
+        self.privileges = privileges
+    def show_privileges(self,):
+        print(f"The privileges of and Admin are\n")
+        for privilege in self.privileges:
+            print(f"{privilege}")
+
+    
+class Admin(User):
+    def __init__(self,first_name, last_name, age, gender, country,privileges):
+        super().__init__(first_name, last_name, age, gender, country)
+        self.privileges = privileges
+        self.privilege = Privileges(privileges)
+
+
+
+admin_obj = Admin("Master","Lee",27,"male","India",privileges)
+admin_obj.privilege.show_privileges()
+
+
+
+
+
